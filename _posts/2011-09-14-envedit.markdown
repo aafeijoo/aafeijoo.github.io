@@ -1,0 +1,174 @@
+---
+layout: post
+title: "envedit"
+date: 2011-09-14 10:05:34
+categories: source code
+tags: bash
+---
+
+Bash script to query, modify and create enviroment variables in Linux using a GUI created with [dialog](http://www.hightek.org/dialog/).
+
+{% highlight bash %}
+#!/bin/bash
+
+# Antonio Álvarez Feijoo
+#
+# Utility to edit the environment variables
+
+script_name="envedit"
+#profile=".profile" # login shell?
+profile=".bashrc" # non-login shell?
+menu_size=10
+tmp="/tmp/"
+d_main=$tmp"."$$"_main"
+d_list=$tmp"."$$"_list"
+d_edit=$tmp"."$$"_edit"
+d_new=$tmp"."$$"_new"
+
+trap "{ rm -f $d_main $d_list $d_edit $d_new; }" EXIT SIGINT SIGTERM
+
+edit() {
+    if [ $1 -eq 1 ]; then
+        var=$2
+        var_val=""
+        backtitle="$script_name - Environment variables editor"
+    else
+        var=${vars[$2]}
+        var_val=${!var}
+        backtitle="$script_name - List of environment variables"
+    fi
+
+    dialog --title "$"$var \
+           --backtitle "$backtitle" \
+           --inputbox "Enter its value:" \
+           8 100 \
+           "$var_val" 2> $d_edit
+
+    ret=$?
+    if [ $ret -eq 1 -o $ret -eq 255 ]; then
+        return 0
+    fi
+
+    new_val=`cat $d_edit`
+    export $var="$new_val"
+
+    if [ -e ~/$profile ]; then
+        dialog --yesno "Do you want to update your $profile?" \
+               0 0
+
+        case $? in
+            0)
+                sed "/^export\ $var=/d" ~/$profile > $tmp$profile"_tmp"
+                mv $tmp$profile"_tmp" ~/$profile
+
+                echo "export $var=\"$new_val\"" >> ~/$profile
+
+                dialog --infobox "$profile updated" \
+                       3 20
+                sleep 1
+                ;;
+        esac
+    fi
+}
+
+list() {
+    vars=(`env | cut -d '=' -f 1 | sort`)
+    vars_num=${#vars[*]}
+
+    for i in `seq 0 $(($vars_num - 1))`; do
+        var=${vars[$i]}
+        vars_list=$vars_list$(($i + 1))" "$var" "
+    done
+
+    while :; do
+        dialog --title "List of environment variables" \
+               --backtitle "$script_name - Main menu" \
+               --menu "Select one:" \
+               17 50 $menu_size \
+               $vars_list 2> $d_list
+
+        ret=$?
+        if [ $ret -eq 1 -o $ret -eq 255 ]; then
+            return 0
+        fi
+
+        op=`cat $d_list`
+        edit 0 $(($op - 1))
+    done
+}
+
+new() {
+    while :; do
+        dialog --title "New environment variable" \
+               --backtitle "$script_name - Main menu" \
+               --inputbox "Enter its name:" \
+               8 30 2> $d_new
+
+        ret=$?
+        if [ $ret -eq 1 -o $ret -eq 255 ]; then
+            return 0
+        fi
+
+        new_var_name=`cat $d_new`
+        if [ -z $new_var_name ]; then
+            dialog --infobox "The variable must have a name" \
+                   3 34
+            sleep 1
+        else
+            edit 1 $new_var_name
+            return 0
+        fi
+    done
+}
+
+quit() {
+    rm -f $d_main $d_list $d_edit $d_new
+    clear
+    bash -i # just to preserve exports in this terminal :P
+    exit 0
+}
+
+main() {
+    dialog_installed=`which dialog`
+    if [ -z $dialog_installed ]; then
+        echo "To be able to execute this script, you have to install 'dialog'"
+        if [ -e "/etc/lsb-release" ]; then
+            distro=`cat /etc/lsb-release | grep DISTRIB_ID | cut -d '=' -f 2`
+            if [ $distro = "Ubuntu" -o $distro = "Debian" ]; then
+                echo "Execute: sudo apt-get install dialog"
+            fi
+        fi
+        exit 1
+    fi
+
+    while :; do
+        dialog --title "Main menu" \
+               --backtitle "$script_name - Environment variables editor" \
+               --menu "Options:" \
+               10 50 3 \
+               1 "Show list" \
+               2 "Create new" \
+               0 "Return to shell" 2> $d_main
+
+        ret=$?
+        if [ $ret -eq 1 -o $ret -eq 255 ]; then
+            quit
+        fi
+
+        op=`cat $d_main`
+        case $op in
+            1)
+                list
+                ;;
+            2)
+                new
+                ;;
+            0)
+                quit
+                ;;
+        esac
+    done
+}
+
+main
+{% endhighlight %}
