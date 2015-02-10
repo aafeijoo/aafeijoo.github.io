@@ -1,0 +1,109 @@
+---
+layout: post
+title: "remember"
+date: 2009-11-29 14:34:25
+categories: source code
+tags: bash
+---
+
+Useful script to take notes quickly when working regularly with the Linux terminal.
+
+{% highlight bash %}
+#!/bin/bash
+
+# Antonio Álvarez Feijoo
+# 
+# Easy and quick way to save things to remember
+
+script_name="remember"
+help_text="Try '$script_name --help' for more information."
+
+dir="$HOME/.$script_name/"
+if [ ! -d $dir ]; then
+    mkdir $dir
+fi
+notes=(`ls $dir`)
+len=${#notes[*]}
+
+case $1 in
+    ""|"-a"|"--all")
+        if [ $len -eq 0 ]; then
+            echo "There is nothing to remember."
+        else
+            dayofweek=`date +%W`
+            i=0
+            while [ $i -lt $len ]; do
+                #echo -n `expr $i + 1`" - "
+                printf "%2d   " $(($i + 1))
+                note_dayofweek=`date -d '1970-01-01 '${notes[$i]}' sec GMT' +%W`
+                if [ $dayofweek -eq $note_dayofweek ]; then
+                    day=`date +%D`
+                    note_day=`date -d '1970-01-01 '${notes[$i]}' sec GMT' +%D`
+                    if [ $note_day = $day ]; then
+                        printf "%9s" "Today"
+                    else
+                        printf "%9s" `date -d '1970-01-01 '${notes[$i]}' sec GMT' +%A`
+                    fi
+                else
+                    printf "%9s" `date -d '1970-01-01 '${notes[$i]}' sec GMT' +%D`
+                fi
+                printf " %8s   " `date -d '1970-01-01 '${notes[$i]}' sec GMT' +%T`
+                echo "`cat $dir${notes[$i]}`"
+                let i++
+            done
+        fi;;
+
+    -[1-9]|-[1-9][0-9]*)
+
+        trick=$(( ($1 * -1) - 1))
+        note="${notes[$trick]}"
+        if [ -z "$note" ]; then
+            echo "Thing to remember number $(($trick + 1)) doesn't exist."
+        else
+            echo "`cat $dir$note`"
+        fi;;
+
+    "-r"|"--remove")
+        if [ $# -lt 2 ]; then
+            echo -e "$script_name: missing option\n\
+$help_text"
+            exit 1
+        fi
+        
+        case $2 in
+            "all"|"ALL")
+                rm -f ${dir}*
+                echo "$len things to remember removed.";;
+
+            [1-9]|[1-9][0-9]*)
+                #notetorm="${notes[`expr $2 - 1`]}"
+                notetorm="${notes[$(($2 - 1))]}"
+                if [ -z "$notetorm" ]; then
+                    echo "Thing to remember number $2 doesn't exist."
+                else
+                    rm -f ${dir}${notetorm}
+                    echo "Thing to remember number $2 removed."
+                fi;;
+                
+            *)
+                echo -e "$script_name: incorrect argument\n\
+$help_text"
+                exit 1;;
+        esac;;
+
+    "-h"|"--help")
+        echo -e "Usage: $script_name [OPTION|TEXT]...\n\
+With no OPTION save a thing to remember.\n\
+\n\
+  -a, --all                    print all things to remember\n\
+  -NUMBER                      print thing to remember NUMBER\n\
+  -r, --remove [NUMBER|ALL]    remove thing to remember NUMBER or ALL\n\
+  -h, --help                   display this help\n";;
+
+    *)
+        timestamp=`date +%s`
+        for token in $*; do
+            echo -n $token" " >> $dir$timestamp
+        done;;
+esac
+{% endhighlight %}
