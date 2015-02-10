@@ -16,13 +16,16 @@ My preferred software technologies are C, C++ and Linux. I also have experience 
 ##Education
 
 ###Computer Science Engineering
-September 2005 - July 2008
+2005 - 2008
+
 University of Vigo
 
 ###Certificate of Pedagogical Aptitude
-September 2007 - March 2008
+2007 - 2008
+
 University of Vigo
 
 ###Technical Engineering in Computer Managements
-September 2001 - January 2005
+2001 - 2005
+
 University of Vigo
