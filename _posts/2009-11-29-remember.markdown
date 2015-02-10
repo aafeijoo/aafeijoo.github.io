@@ -6,7 +6,7 @@ categories: source code
 tags: bash
 ---
 
-Useful script to take notes quickly when working regularly with the Linux terminal.
+Useful Bash script to take notes quickly when working regularly with the Linux terminal.
 
 {% highlight bash %}
 #!/bin/bash

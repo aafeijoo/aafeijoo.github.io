@@ -10,12 +10,13 @@ description: > # this means to ignore newlines until "email:"
 email: aafeijoo@gmail.com
 #blog logo
 logo: "/assets/images/aafeijoo_avatar.jpg"
+logo_small: "/assets/images/aafeijoo_avatar_small.png"
 # blog cover
 cover: ""
 
 name: 'Antonio Álvarez Feijoo'
 author: 'Antonio Álvarez Feijoo'
-author_image: "/assets/images/aafeijoo_avatar_small.png"
+author_image: "/assets/images/aafeijoo_avatar.jpg"
 
 paginate:	5
 
