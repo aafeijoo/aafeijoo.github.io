@@ -4,6 +4,7 @@ title: "PowerProduct"
 date: 2010-06-03 09:20:57
 categories: source code
 tags: wolfram mathematica
+image: /assets/images/articles/2010-06-03-product-of-powers/product_of_powers.png
 ---
 
 Wolfram Mathematica package with functions to express the terms of a polynomial like products of powers.
