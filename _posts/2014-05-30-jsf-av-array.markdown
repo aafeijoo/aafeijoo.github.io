@@ -66,7 +66,7 @@ public:
     /// \return True if index is not out of array bounds, otherwise false.
     ///
     bool at ( uint32 index,
-              Reference& element )
+              Reference element )
     {
         bool on_bounds = check_range(index);
         if (on_bounds)
@@ -84,7 +84,7 @@ public:
     /// \return True if index is not out of array bounds, otherwise false.
     ///
     bool at ( uint32 index,
-              Const_reference& element ) const
+              Const_reference element ) const
     {
         bool on_bounds = check_range(index);
         if (on_bounds)
