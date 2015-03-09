@@ -44,11 +44,6 @@ public:
     typedef T& Reference;
 
     ///
-    /// \brief Constant reference
-    ///
-    typedef const T& Const_reference;
-
-    ///
     /// \brief Gets the number of array elements.
     ///
     /// \return Number of array elements.
@@ -67,24 +62,6 @@ public:
     ///
     bool at ( uint32 index,
               Reference element )
-    {
-        bool on_bounds = check_range(index);
-        if (on_bounds)
-        {
-            element = m_array[index];
-        }
-        return on_bounds;
-    }
-
-    ///
-    /// \brief Gets the constant reference to an array element.
-    ///
-    /// \param index Position of the element within the array (from 0 to N - 1)
-    /// \param element Constant reference to the array element.
-    /// \return True if index is not out of array bounds, otherwise false.
-    ///
-    bool at ( uint32 index,
-              Const_reference element ) const
     {
         bool on_bounds = check_range(index);
         if (on_bounds)
