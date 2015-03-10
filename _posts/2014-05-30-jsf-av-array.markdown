@@ -76,21 +76,21 @@ public:
         return on_bounds;
     }
 
-    //
-    // \brief Gets the pointer to the beginning of the array.
-    //
-    // \return Pointer to the beginning of the array.
-    //
+    ///
+    /// \brief Gets the pointer to the beginning of the array.
+    ///
+    /// \return Pointer to the beginning of the array.
+    ///
     Iterator begin ()
     {
         return static_cast<Iterator>(&m_array[0]);
     }
 
-    //
-    // \brief Gets the pointer to the end of the array.
-    //
-    // \return Pointer to the end of the array.
-    //
+    ///
+    /// \brief Gets the pointer to the end of the array.
+    ///
+    /// \return Pointer to the end of the array.
+    ///
     Iterator end ()
     {
         return static_cast<Iterator>(&m_array[N]);
