@@ -32,7 +32,7 @@ class My_manager
 public:
 
     ///
-    /// Gets a singleton instance of the My_manager class.
+    /// \brief Gets a singleton instance of the My_manager class.
     ///
     /// \return My_manager class instance.
     ///
@@ -44,22 +44,22 @@ public:
 private:
 
     ///
-    /// Constructor.
+    /// \brief Constructor.
     ///
     My_manager ();
 
     ///
-    /// Destructor.
+    /// \brief Destructor.
     ///
     ~My_manager ();
 
     ///
-    /// Class instance
+    /// \brief Class instance
     ///
     static My_manager ms_instance;
     
     ///
-    /// Dynamic data
+    /// \brief Dynamic data
     ///
     My_data* m_data;
 
