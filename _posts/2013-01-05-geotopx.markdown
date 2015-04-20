@@ -12,7 +12,7 @@ The easiest way to implement a Geographic Information System is to use a project
 
 Therefore, geographical coordinates represented by decimal values have to be mapped to pixels represented by integer values.
 
-![Division of Earth in pixels](/assets/images/articles/2013-01-05-geotopx/geotopx_px.jpg)
+![Division of the Earth in pixels](/assets/images/articles/2013-01-05-geotopx/geotopx_px.jpg)
 
 So, the conversion from geographic coordinates to pixels will be perfomed as following:
 
@@ -23,6 +23,7 @@ unsigned int px_right = static_cast<unsigned int>(round_to_nearest_int((geo_righ
 unsigned int px_top = static_cast<unsigned int>(round_to_nearest_int((geo_top - c_earth_bottom) / resolution) - 1);
 {% endhighlight %}
 
+
 Where Earth boundaries are defined as constants:
 
 {% highlight c++ %}
@@ -32,6 +33,7 @@ const double c_earth_right = 180.0;
 const double c_earth_top = 90.0;
 {% endhighlight %}
 
+
 The function to round a number to its nearest integer is implemented adding 0.5 and truncating the result.
 
 {% highlight c++ %}
@@ -40,6 +42,7 @@ int round_to_nearest_int ( double number )
     return static_cast<int>(number + 0.5);
 }
 {% endhighlight %}
+
 
 And the opposite, to convert from pixels to geographic coordinates:
 
@@ -51,5 +54,6 @@ double geo_top = c_earth_bottom + static_cast<double>(px_top + 1) * resolution;
 {% endhighlight %}
 
 References:
+
 * [Wikipedia - Equirectangular projection](http://en.wikipedia.org/wiki/Equirectangular_projection)
 * [NASA - Visible Earth](http://visibleearth.nasa.gov/)
