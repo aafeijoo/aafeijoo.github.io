@@ -3,7 +3,7 @@ layout: post
 title: "Memory Allocation in safety critical systems"
 date: 2015-03-10 09:10:32
 categories: source code
-tags: featured c++ safety critical
+tags: c++ safety critical
 ---
 
 The allocation and deallocation of memory from the heap while the system is running is not a good idea in safety critical systems. All dynamic memory should be allocated during the initialization phase, so we ensure that our system has enough memory during the execution of the critical task.

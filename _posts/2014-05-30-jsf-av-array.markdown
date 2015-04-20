@@ -3,7 +3,7 @@ layout: post
 title: "JSF AV C++ - The Array class"
 date: 2014-05-30 11:40:04
 categories: source code
-tags: featured c++ safety critical
+tags: c++ safety critical
 ---
 
 The rule 97 of Joint Strike Fighter Air Vehicle C++ Coding Standards forbids the use of arrays in interfaces.

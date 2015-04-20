@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Using the Heliosat-2 method to estimate solar radiation"
+date: 2010-05-15 12:33:02
+categories: projects
+tags: c++
+image: /assets/images/articles/2010-05-15-heliosat2/heliosat2_radiation_august_2009.png
+---
+
+I've participated in a project of the [University of Vigo](http://www.uvigo.es) (Spain) that aims to implement the Heliosat-2 method, allowing to estimate solar radiation from images taken with the MSG-2 satellite.
+
+![Image from the MSG-2 satellite](/assets/images/articles/2010-05-15-heliosat2/heliosat2_msg2.png)
+
+As a summary, the Heliosat-2 method combines values of satellite images, altitude and turbidity to map solar radiation at the ground level.
+
+![Estimated solar radiation of July 2009](/assets/images/articles/2010-05-15-heliosat2/heliosat2_radiation_july_2009.png)
