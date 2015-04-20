@@ -23,7 +23,6 @@ unsigned int px_right = static_cast<unsigned int>(round_to_nearest_int((geo_righ
 unsigned int px_top = static_cast<unsigned int>(round_to_nearest_int((geo_top - c_earth_bottom) / resolution) - 1);
 {% endhighlight %}
 
-
 Where Earth boundaries are defined as constants:
 
 {% highlight c++ %}
@@ -33,7 +32,6 @@ const double c_earth_right = 180.0;
 const double c_earth_top = 90.0;
 {% endhighlight %}
 
-
 The function to round a number to its nearest integer is implemented adding 0.5 and truncating the result.
 
 {% highlight c++ %}
@@ -42,7 +40,6 @@ int round_to_nearest_int ( double number )
     return static_cast<int>(number + 0.5);
 }
 {% endhighlight %}
-
 
 And the opposite, to convert from pixels to geographic coordinates:
 
