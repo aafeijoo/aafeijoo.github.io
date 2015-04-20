@@ -18,7 +18,7 @@ name: 'Antonio Álvarez Feijoo'
 author: 'Antonio Álvarez Feijoo'
 author_image: "/assets/images/aafeijoo_avatar.jpg"
 
-paginate:	5
+paginate:	6
 
 url: "http://aafeijoo.github.io" # the base hostname & protocol for your site
 baseurl: ""
