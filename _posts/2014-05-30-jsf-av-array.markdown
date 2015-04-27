@@ -96,7 +96,7 @@ public:
         return static_cast<Iterator>(&m_array[N]);
     }
 
-private:
+protected:
 
     ///
     /// \brief Fixed size array
