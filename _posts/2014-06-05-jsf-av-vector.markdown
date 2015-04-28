@@ -122,6 +122,14 @@ public:
         return success;
     }
 
+    ///
+    /// \brief Removes all elements from the vector.
+    ///
+    void clear ()
+    {
+        this->m_elements_count = 0;
+    }
+
 protected:
 
     ///
