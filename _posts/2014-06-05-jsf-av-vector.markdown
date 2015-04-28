@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JSF AV C++ - Simulating a Vector using the fixed size Array class"
+title: "JSF AV C++ - Simulating a vector using the fixed size Array class"
 date: 2014-06-05 11:40:04
 categories: source code
 tags: c++ safety critical
@@ -71,6 +71,16 @@ public:
     }
 
     ///
+    /// \brief Gets the pointer to the end of the vector.
+    ///
+    /// \return Pointer to the end of the vector.
+    ///
+    Iterator end ()
+    {
+        return static_cast<Iterator>(&m_array[this->m_elements_count]);
+    }
+
+    ///
     /// \brief Returns whether the vector is empty (i.e. whether its size is 0).
     ///
     /// \return True if empty, otherwise false.
@@ -83,15 +93,16 @@ public:
     ///
     /// \brief Adds a new element at the end of the vector, after its current last element.
     ///
-    /// \param element Reference to the array element.
+    /// \param element Reference to the vector element.
     /// \return True if success, otherwise false.
     ///
-    bool push_back ( const Array<T, N>::Reference element )
+    bool push_back ( const Vector<T, N>::Reference element )
     {
-        bool on_bounds = this->check_range(this->m_elements_count + 1);
+        bool on_bounds = this->check_range(this->m_elements_count);
         if (on_bounds)
         {
-            this->m_array[this->m_elements_count++] = element;
+            this->m_array[this->m_elements_count] = element;
+            this->m_elements_count++;
         }
         return on_bounds;
     }
