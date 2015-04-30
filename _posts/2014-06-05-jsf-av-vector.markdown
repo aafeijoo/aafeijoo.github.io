@@ -60,7 +60,7 @@ public:
     /// \return True if index is not out of vector bounds, otherwise false.
     ///
     bool at ( uint32 index,
-              Reference element )
+              T& element )
     {
         bool on_bounds = (index < this->m_elements_count);
         if (on_bounds)
@@ -75,9 +75,9 @@ public:
     ///
     /// \return Pointer to the end of the vector.
     ///
-    Iterator end ()
+    T* end ()
     {
-        return static_cast<Iterator>(&m_array[this->m_elements_count]);
+        return static_cast<T*>(&this->m_array[this->m_elements_count]);
     }
 
     ///
@@ -96,7 +96,7 @@ public:
     /// \param element Reference to the vector element.
     /// \return True if success, otherwise false.
     ///
-    bool push_back ( const Vector<T, N>::Reference element )
+    bool push_back ( const T& element )
     {
         bool on_bounds = this->check_range(this->m_elements_count);
         if (on_bounds)
