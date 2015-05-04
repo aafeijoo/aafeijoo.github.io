@@ -61,13 +61,13 @@ public:
     ///
     /// \brief Gets the pointer to an array element.
     ///
-    /// \param index Position of the element within the array (from 0 to N - 1)
+    /// \tparam index Position of the element within the array (from 0 to N - 1)
     /// \return Pointer to the array element if index is not out of array bounds, otherwise 0.
     ///
     Iterator at ( uint32 index )
     {
         Iterator itr = 0;
-        if (this->check_range(index))
+        if (check_range(index))
         {
             itr = static_cast<Iterator>(&m_array[index]);
         }
@@ -101,7 +101,7 @@ public:
     ///
     Reference front ()
     {
-        return *(this->begin());
+        return *begin();
     }
 
     ///
@@ -111,7 +111,7 @@ public:
     ///
     Reference back ()
     {
-        return (N == 0) ? *(this->end()) : *(this->end() - 1);
+        return (N == 0) ? *end() : *(end() - 1);
     }
 
 protected:
@@ -124,7 +124,7 @@ protected:
     ///
     /// \brief Checks if an index is inside of array range.
     ///
-    /// \param index Position of the element within the array (from 0 to N - 1)
+    /// \tparam index Position of the element within the array (from 0 to N - 1)
     /// \return True if index is not out of array bounds, otherwise false.
     ///
     static bool check_range ( uint32 index )
