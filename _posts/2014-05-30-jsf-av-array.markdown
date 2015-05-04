@@ -59,21 +59,19 @@ public:
     }
 
     ///
-    /// \brief Gets the reference to an array element.
+    /// \brief Gets the pointer to an array element.
     ///
     /// \param index Position of the element within the array (from 0 to N - 1)
-    /// \param element Reference to the array element.
-    /// \return True if index is not out of array bounds, otherwise false.
+    /// \return Pointer to the array element if index is not out of array bounds, otherwise 0.
     ///
-    bool at ( uint32 index,
-              Reference element )
+    Iterator at ( uint32 index )
     {
-        bool on_bounds = check_range(index);
-        if (on_bounds)
+        Iterator itr = 0;
+        if (this->check_range(index))
         {
-            element = m_array[index];
+            itr = static_cast<Iterator>(&m_array[index]);
         }
-        return on_bounds;
+        return itr;
     }
 
     ///
@@ -94,6 +92,26 @@ public:
     Iterator end ()
     {
         return static_cast<Iterator>(&m_array[N]);
+    }
+
+    ///
+    /// \brief Gets the reference to the first element of the array.
+    ///
+    /// \return Reference to the first element of the array.
+    ///
+    Reference front ()
+    {
+        return *(this->begin());
+    }
+
+    ///
+    /// \brief Gets the reference to the last element of the array.
+    ///
+    /// \return Reference to the last element of the array.
+    ///
+    Reference back ()
+    {
+        return (N == 0) ? *(this->end()) : *(this->end() - 1);
     }
 
 protected:
