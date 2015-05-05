@@ -371,7 +371,7 @@ public:
                 node = this->m_top_right_child;
                 break;
         }
-        return node;
+        return *node;
     }
 
     ///
