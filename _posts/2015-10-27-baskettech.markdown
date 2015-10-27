@@ -23,7 +23,7 @@ Features:
   * The time profile contains the physical (photo, height, weight) and game (hand, position, number) features that the player has during a period of time, in addition to the specific objectives set for that period (points, rebounds, assists, etc.).
 * Display graphically the current rating of the player.
 * Display in a comparison table all data related to multiple players: biography, rating, statistics, etc.
-* Add real-time statistics easily: points, rebounds (offensive and defensive), assists, steals, blocked shots, blocked attempts, turnovers, assists per turnover ratio, fouls (offensive and defensive), fouls drawn, PER (Player Efficiency Rating - https://en.wikipedia.org/wiki/Player_efficiency_rating) and PIR (Performance Index Rating - https://en.wikipedia.org/wiki/Performance_Index_Rating: Euroleague, Eurocup, Spanish ACB).
+* Add real-time statistics easily: points, rebounds (offensive and defensive), assists, steals, blocked shots, blocked attempts, turnovers, assists per turnover ratio, fouls (offensive and defensive), fouls drawn, [PER](https://en.wikipedia.org/wiki/Player_efficiency_rating) and [PIR](https://en.wikipedia.org/wiki/Performance_Index_Rating).
 * Display real-time statistics. They are displayed in a table with total values (TOT) or calculated by playing time (x48, x40, x36, x30, x24, x20).
 * Share statistics on Twitter, WhatsApp, etc.
 * Write text annotations, record videos, capture pictures and associate any type of document with the player.
