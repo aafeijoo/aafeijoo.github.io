@@ -32,7 +32,7 @@ social:
 #    share_title: ?text=
 #    share_link: "&amp;url="
 
-  - icon:	linkedin-square
+  - icon:	linkedin
     url:	https://www.linkedin.com/in/aafeijoo
     desc:	Connect with me on LinkedIn
     share_url:
