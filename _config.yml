@@ -32,12 +32,12 @@ social:
 #    share_title: ?text=
 #    share_link: "&amp;url="
 
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: //www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
+  - icon:	linkedin-square
+    url:	https://www.linkedin.com/in/aafeijoo
+    desc:	Connect with me on LinkedIn
+    share_url:
+    share_title:
+    share_link:
 
   - icon:	github
     url:	https://github.com/aafeijoo
@@ -45,10 +45,3 @@ social:
     share_url:
     share_title:
     share_link:
-
-#  - icon:	google-plus
-#    url:	https://google.com/???
-#    desc:	Add me on google+
-#    share_url:
-#    share_title:
-#    share_link:
