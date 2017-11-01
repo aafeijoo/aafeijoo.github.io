@@ -38,7 +38,8 @@ public:
     ///
     static My_manager& get_instance ()
     {
-        return ms_instance;
+        static My_manager instance;
+        return instance;
     }
 
 private:
@@ -52,11 +53,6 @@ private:
     /// \brief Destructor.
     ///
     ~My_manager ();
-
-    ///
-    /// \brief Class instance
-    ///
-    static My_manager ms_instance;
     
     ///
     /// \brief Dynamic data
@@ -73,10 +69,6 @@ private:
 {% highlight c++ %}
 #include <My_manager.h>
 #include <My_data.h>
-
-//----------------------------------------------------------------------------------------------------------------------
-
-My_manager My_manager::ms_instance;
 
 //----------------------------------------------------------------------------------------------------------------------
 
