@@ -33,10 +33,7 @@ Features:
 
 Right now it is available for devices with [Android](https://play.google.com/store/apps/details?id=com.baskettech.mobile) operating system.
 
-Coming soon will also be available for iOS (iPhone, iPad).
-
 More information:
 
 * [http://www.baskettech.com](http://www.baskettech.com)
-* [http://www.facebook.com/baskettech](http://www.facebook.com/baskettech)
 * [http://www.twitter.com/basket_tech](http://www.twitter.com/basket_tech)
