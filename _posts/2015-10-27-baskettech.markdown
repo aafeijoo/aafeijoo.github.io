@@ -31,9 +31,11 @@ Features:
 
 ![BasketTech: add real-time statistics](/assets/images/articles/2015-10-27-baskettech/add_stats_new_2.png)
 
-Right now it is available for devices with [Android](https://play.google.com/store/apps/details?id=com.baskettech.mobile) operating system.
+~~Right now it is available for devices with [Android](https://play.google.com/store/apps/details?id=com.baskettech.mobile) operating system.~~
 
 More information:
 
-* [http://www.baskettech.com](http://www.baskettech.com)
+* ~~[http://www.baskettech.com](http://www.baskettech.com)~~
 * [http://www.twitter.com/basket_tech](http://www.twitter.com/basket_tech)
+
+**UPDATE 2018-08-21: This project was cancelled.**
