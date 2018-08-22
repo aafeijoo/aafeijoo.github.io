@@ -4,7 +4,7 @@ title: "Linux driver, Intel CPU and assembler programming"
 date: 2018-08-22 19:10:42
 categories: source code
 tags: c assembler linux intel driver
-image: /assets/images/articles/2018-08-22-linux-driver-intel-cpu-and-assembler-programming/2018-08-22-linux-driver-intel-cpu-and-assembler-programming.png
+image: /assets/images/articles/2018-08-22-linux-driver-intel-cpu-and-assembler-programming/linux-driver-intel-cpu-and-assembler-programming.png
 ---
 
 Some time ago I was playing with Linux drivers after attending to a great course from [ElectraTraining](http://www.electratraining.org/english/). I wanted to develop a driver that replaces some handler in the system call table (read-only) to intercept that system call.
