@@ -9,6 +9,10 @@ image: /assets/images/articles/2018-08-22-linux-driver-intel-cpu-and-assembler-p
 
 Some time ago I was playing with Linux drivers after attending to a great course from [ElectraTraining](http://www.electratraining.org/english/). I wanted to develop a driver that replaces some handler in the system call table (read-only) to intercept that system call.
 
+First of all, we have to find the address of the system call table. The kernel I'am using provides its symbol, so I can use the `kallsyms_lookup_name` function.
+
+![/proc/kallsyms](/assets/images/articles/2018-08-22-linux-driver-intel-cpu-and-assembler-programming/kallsyms.png)
+
 To be able to modify the system call table when running Linux on an Intel CPU, we have to modify the register CR0.
 
 > CR0.WP
