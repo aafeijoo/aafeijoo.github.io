@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A simple Bash template"
-date: 2018-08-21 08:59:23
+date: 2018-08-21 20:59:23
 categories: source code
 tags: bash
 ---
