@@ -47,59 +47,59 @@ static asmlinkage long (*original_open)(const char __user *filename, int flags, 
 
 static asmlinkage long testmod_open(const char __user *filename, int flags, umode_t mode)
 {
-	pr_info("[open] %s : %s\n", current->comm, filename);
-	return original_open(filename, flags, mode);
+    pr_info("[open] %s : %s\n", current->comm, filename);
+    return original_open(filename, flags, mode);
 }
 
 static void disable_wp(void) 
 {
-	unsigned long value;
-	asm volatile("mov %%cr0, %0" : "=r" (value));
-	if (value & 0x00010000)
-	{
-		asm volatile("mov %0, %%cr0" : : "r" (value & ~0x00010000));
-	}
+    unsigned long value;
+    asm volatile("mov %%cr0, %0" : "=r" (value));
+    if (value & 0x00010000)
+    {
+        asm volatile("mov %0, %%cr0" : : "r" (value & ~0x00010000));
+    }
 }
 
 static void enable_wp(void) 
 {
-	unsigned long value;
-	asm volatile("mov %%cr0, %0" : "=r" (value));
-	if (!(value & 0x00010000))
-	{
-		asm volatile("mov %0, %%cr0" : : "r" (value | 0x00010000));
-	}
+    unsigned long value;
+    asm volatile("mov %%cr0, %0" : "=r" (value));
+    if (!(value & 0x00010000))
+    {
+        asm volatile("mov %0, %%cr0" : : "r" (value | 0x00010000));
+    }
 }
 
 int init_module(void)
 {
-	sys_call_table = (void **)kallsyms_lookup_name("sys_call_table");
+    sys_call_table = (void **)kallsyms_lookup_name("sys_call_table");
     if (!sys_call_table)
     {
-		pr_err("testmod: can't find sys_call_table symbol\n");
-		return -ENXIO;
-	}
+        pr_err("testmod: can't find sys_call_table symbol\n");
+        return -ENXIO;
+    }
 
-	disable_wp(); 
-	{
-		original_open = sys_call_table[__NR_open];
-		sys_call_table[__NR_open] = testmod_open;
-	}
-	enable_wp();
+    disable_wp(); 
+    {
+        original_open = sys_call_table[__NR_open];
+        sys_call_table[__NR_open] = testmod_open;
+    }
+    enable_wp();
 
-	pr_info("testmod: loaded\n");
-	return 0;
+    pr_info("testmod: loaded\n");
+    return 0;
 }
 
 void cleanup_module(void)
 {
-	disable_wp(); 
-	{
-		sys_call_table[__NR_open] = original_open;
-	}
-	enable_wp();
+    disable_wp(); 
+    {
+        sys_call_table[__NR_open] = original_open;
+    }
+    enable_wp();
 
-	pr_info("testmod: unloaded\n");
+    pr_info("testmod: unloaded\n");
 }
 
 MODULE_AUTHOR("Antonio Alvarez Feijoo");
