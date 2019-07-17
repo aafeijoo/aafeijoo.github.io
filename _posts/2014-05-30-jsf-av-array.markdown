@@ -69,7 +69,7 @@ public:
         Iterator itr = 0;
         if (check_range(index))
         {
-            itr = static_cast<Iterator>(&m_array[index]);
+            itr = &m_array[index];
         }
         return itr;
     }
@@ -81,7 +81,7 @@ public:
     ///
     Iterator begin ()
     {
-        return static_cast<Iterator>(&m_array[0]);
+        return (N == 0) ? 0 : &m_array[0];
     }
 
     ///
@@ -91,7 +91,7 @@ public:
     ///
     Iterator end ()
     {
-        return static_cast<Iterator>(&m_array[N]);
+        return (N == 0) ? 0 : &m_array[N - 1];
     }
 
     ///
