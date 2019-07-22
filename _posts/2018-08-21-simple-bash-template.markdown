@@ -26,6 +26,8 @@ And don't forget that you have tools to evaluate your scripts, like the great [S
 SCRIPT_NAME=$(basename "$0")
 DEFAULT_OPTION=0
 
+quiet=0
+
 trap clean EXIT
 
 usage ()
@@ -33,13 +35,26 @@ usage ()
     echo -e "Usage: $SCRIPT_NAME -v VALUE [OPTIONS]\n\
 Write script description.\n\
 Options:\n\
+\t-h \tPrints this help.\n\
+\t-q \tQuiet, do not log anything.\n\
 \t-o OPTION\tWrite option description. Default: $DEFAULT_OPTION\n"
 }
 
 log ()
 {
-    now=$(date +"%Y-%m-%d %T.%N")
-    echo "[$now] $1"
+    if [ $quiet -eq 0 ]
+    then
+        now=$(date +"%Y-%m-%d %T.%N")
+        echo "[$now] $1"
+    fi
+}
+
+log_lines ()
+{
+    while read -r line
+    do
+        log "$line"
+    done <<< "$1"
 }
 
 clean ()
@@ -47,6 +62,9 @@ clean ()
     log "Exiting..."
 
     #TODO
+    
+    # Kill subprocesses
+	#kill -- -$$
 
     log "Bye"
 }
@@ -56,7 +74,7 @@ main ()
     value=""
     option=$DEFAULT_OPTION
 
-    while getopts v:o: OPTNAME
+    while getopts v:o:qh OPTNAME
     do
         case "$OPTNAME" in
             v)
@@ -64,6 +82,13 @@ main ()
                 ;;
             o)
                 option=$OPTARG
+                ;;
+            q)
+                quiet=1
+                ;;
+            h)
+                usage
+                exit 0
                 ;;
             *)
                 usage
