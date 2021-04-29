@@ -91,7 +91,7 @@ public:
     ///
     Iterator end ()
     {
-        return (N == 0) ? 0 : &m_array[N - 1];
+        return (N == 0) ? 0 : (&m_array[N - 1] + 1);
     }
 
     ///
